@@ -33,9 +33,9 @@ kramdown:
 ####################################
 #
 owner:
-  name: MliuGo
-  avatar: logo2.png
-  job: "A writer"
+  name: Michael Liu
+  avatar: logo.jpg
+  job: "A Glass of Water"
   bio: "I am just lazy to talk, so i write."
   email: mcfly.liu@gmail.com
   disqus-shortname:
