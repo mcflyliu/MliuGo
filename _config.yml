@@ -5,7 +5,7 @@
 #
 title: MliuGo
 email: mcfly_liu@126.com
-description: A simple and awesome blog theme powered by jekyll.
+description: I am just lazy to talk, so i write.
 url: https://mcflyliu.github.io/MliuGo/ # the base hostname & protocol for your site
 
 
@@ -37,7 +37,7 @@ owner:
   avatar: logo.jpg
   job: "A Glass of Water"
   bio: "I am just lazy to talk, so i write."
-  email: mcfly.liu@gmail.com
+  email: mcfly_liu@126.com
   disqus-shortname:
   twitter: #username
   facebook: #username
