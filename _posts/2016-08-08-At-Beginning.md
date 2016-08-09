@@ -2,7 +2,7 @@
 layout: post
 title:  "At Beginning"
 date:   2016-08-08 17:23:19
-categories: [paragraph]
+categories: [other]
 comments: true
 ---
 
