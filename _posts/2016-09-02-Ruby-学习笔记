@@ -1,0 +1,558 @@
+# Ruby #
+
+## 基本语法 ##
+
+#### puts & print 都会输出值到屏幕，但是puts会自动另起一行 ####
+	
+	puts "Hello World"  
+	print "Hello World"  
+	Hello World
+	Hello World`
+
+
+####.length 返回字符串长度####
+
+	"Hello World" .length  
+
+	
+
+####.reverse 倒置 ####
+
+	"Hello World" .reverse
+
+#### .upcase & .downcase #### 变换大小写
+
+	puts "Michael Liu" .upcase
+	puts "Michael Liu" .downcase
+    MICHAEL LIU
+    michael liu
+
+#### # 表示单行注释 ####
+
+	"Michael" .length # this is my name length
+	7
+
+#### =begin =end 表示多行注释 ####
+
+	=begin
+	1+1
+	=end
+
+#### 调用method的两种方式 ####
+
+	name = "Michael Liu"
+	# 第一种方式
+	name.downcase
+	name.reverse
+	name.upcase
+	"MICHAEL LIU"
+
+    # 另外一种方式
+	name.downcase.reverse.upcase
+	"MICHAEL LIU"
+
+#### gets 取得用户输入的值 #### chomp的作用是去掉多余的空行
+
+	print "What's your name?"
+	first_name=gets.chomp
+
+#### 利用#{}输出变量值 ####
+
+	print "What's your first name?"
+	first_name=gets.chomp
+	print "What's your last name?"
+	last_name=gets.chomp
+	print "Where are you from?"
+	city = gets.chomp
+	print "which country are your come from?"
+	state = gets.chomp
+	puts "My name is #{first_name}#{last_name}, i come from #{city} #{state}"
+
+#### .capitalize 变化字符串第一个字母为大写 ####
+出现在方法名尾部的感叹号表明使用该方法是需要多加小心。许多Ruby的核心类都定义了成对的方法，它们具有同样的名称，只是结尾相差一个“！”,通常情况下，不带感叹号的方法调用该方法的一个拷贝，带感叹号的方法则是一个可变方法，该方法会修改原来的对象，如Array类中的sort和sort!
+
+	print "What's your first name?"
+	first_name=gets.chomp.capitalize!
+	print "What's your last name?"
+	last_name=gets.chomp.capitalize!
+	print "Where are you from?"
+	city = gets.chomp.capitalize!
+	print "which country are your come from?"
+	state = gets.chomp.upcase!
+	puts "My name is #{first_name}#{last_name}, i come from #{city} #{state}"
+
+	My name is MichaelLiu, i come from Shanghai CHINA
+
+#### if 语句 如果为真，或者，否则 ####
+
+	if 2>2
+		puts ">"
+	elsif 2<2
+		puts "<"
+	else 
+    	puts "="
+	end
+
+	=
+
+#### unless 除非为假，否则 ####
+
+    第一种
+	hungry = false
+
+	unless hungry
+  		puts "I'm writing Ruby programs!"
+	else
+  		puts "Time to eat!"
+	end
+
+	第二种
+	problem = false
+	print "Good to go!" unless problem
+
+#### case ####
+
+	case language
+	when "JS"
+  		puts "Websites!"
+	when "Python"
+  		puts "Science!"
+	when "Ruby"
+		puts "Web apps!"
+	else
+  		puts "I don't know!"
+	end
+
+
+
+#### == & != 等于 和 不等于####
+
+	x = 2
+	y = 2
+	if x == y
+  		print "x and y are equal!"
+	end
+
+	8 != 10
+
+#### 大于，大于等于，小于，小于等于 ####
+
+    Less than: <
+    Less than or equal to: <=
+    Greater than: >
+    Greater than or equal to: >=
+
+#### AND && ####
+
+	true && true # => true
+	true && false # => false
+	false && true # => false
+	false && false # => false
+
+#### OR || ####
+
+	true || true # => true
+	true || false # => true
+	false || true # => true
+	false || false # => false
+#### NOT ! ####
+
+	!true # => false
+	!false # => true
+
+#### 结合使用 boolean operators ####
+
+	boolean_1 = (3 < 4 || false) && (false || true)
+	boolean_1 = true
+
+	boolean_2 = !true && (!true || 100 != 5**2)
+	boolean_2 = false
+
+	boolean_3 = true || !(true || false)
+	boolean_3 = true
+
+#### .include 和 .gsub 包含和替换 ####
+
+	print "Please enter your name:"
+	user_input = gets.chomp
+	user_input.downcase!
+	if user_input.include? "s"
+    	user_input.gsub!(/s/,"th")
+	else 
+    	puts "we didn't a s"
+	end
+
+#### While循环 ####
+
+	i = 0
+	while i < 5
+ 	  puts i
+ 	  i = i + 1
+	end
+
+#### until循环 ####
+
+	counter = 1
+	while counter < 11
+  		puts counter
+  		counter += 1
+	end
+
+#### For循环 ####
+
+***注意，如果包含边界，是两个`.`，如果不包含是三个`...`***
+
+	for num in 1...10
+  	  puts num
+	end
+
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+
+#### Loop 迭代 ####
+
+***`{}`与`do end`的作用相同，都表示一个block, `do`表示打开block，`end`表示关闭block*
+
+	例1
+
+	loop { print "Hello, world!" }
+
+	例2
+
+	i = 20
+	loop do
+ 		i -= 1
+ 		print "#{i}"
+ 		break if i <= 0
+	end
+
+#### break & next ####
+
+***`break`表示打破循环，`next`表示当符合某条件时，跳过下一条语句***
+
+	#输出所有20以内的偶数
+	i = 20
+	loop do
+  		i -= 1
+  		next if i % 2 ==1
+  		print "#{i}"
+  		break if i <= 0
+	end
+
+#### .each 迭代 ####
+
+
+
+> object.each { |item| # Do something }
+
+
+> object.each do |item| # Do something end
+
+	array = [1,2,3,4,5]
+
+	array.each do |x|
+ 	  x += 10
+ 	  puts "#{x}"
+	end
+
+	11
+	12
+	13
+	14
+	15
+
+	odds = [1,3,5,7,9]
+	odds.each do |x|
+	    x = x * 2
+	print x
+	end
+
+	26101418
+
+#### .times 迭代，重复输出`{}`中的内容 ####
+
+	10.times { print "Chunky bacon!" } # 输出10次Chunky bacon!
+
+#### index 索引####
+
+	array = [5, 7, 9, 2, 0]
+	array[2]
+	# returns "9", since "9"
+	# is at index 2
+
+	        +---+---+---+---+---+
+	array   | 5 | 7 | 9 | 2 | 0 |
+	        +---+---+---+---+---+
+	index     0   1   2   3   4
+
+#### multidimensional 多维矩阵 ####
+
+	multi_d_array = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+
+	multi_d_array.each { |x| puts "#{x}\n" }
+
+	[0, 0, 0, 0]
+	[0, 0, 0, 0]
+	[0, 0, 0, 0]
+	[0, 0, 0, 0]
+
+#### Hash ####
+
+***我的理解就是用自定义的索引，去替代矩阵里的数字索引***
+
+	my_hash = { "name" => "Eric",
+  	"age" => 26,
+  	"hungry?" => true
+	}
+
+	puts my_hash["name"]
+	puts my_hash["age"]
+	puts my_hash["hungry?"]
+
+	Eric
+	26
+	true
+
+#### Hash.new 也可用这个创建索引 ####
+
+	pets=Hash.new
+	pets["Jack"] = "Cat"
+	puts pets["Jack"]
+
+	Cat # 直接输出Jack对应的值
+
+#### 综合练习 ####
+该例子可以用来计算矩阵中某字段出现的次数
+其中运用了
+
+`get.chomp` 用户输入
+
+`.split()` 按指定符号分隔字符串
+
+`Hash.new` 自定义矩阵
+
+`.each` 矩阵中迭代
+
+`.sort_by` 排序
+
+`.reverse` 倒置
+
+	puts "Please enter something:"
+	text = gets.chomp
+	words = text.split(" ")
+
+	frequencies = Hash.new{0}
+	words.each do |word|
+  		frequencies[word] += 1
+	end
+
+	frequencies = frequencies.sort_by do |word, count|
+    	count
+	end
+
+	frequencies.reverse!
+
+	frequencies.each do |name,num|
+   		puts "#{name} #{num.to_s}"
+	end
+
+
+
+	Please enter something:
+ 		hello World hello
+
+	hello 2
+	World 1
+
+#### def 自定义方法 ####
+
+	def greeter (name)
+  	  return "Greeting #{name}"
+	end
+
+	def by_three?(number)
+  	  return number % 3 == 0
+	end
+
+#### .sort! ####
+
+	my_array = [3, 4, 8, 7, 1, 6, 5, 9, 2]
+
+	# Call the sort! method on my_array below.
+	# my_array should then equal [1, 2, 3, 4, 5, 6, 7, 8, 9].
+
+	my_array.sort!
+
+	[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+#### <=> The Combined Comparison Operator  ####
+
+如果第一个运算对象大于第二个，返回1
+
+如果第一个运算对象等于第二个，返回0
+
+如果第一个运算对象小于第二个，返回-1
+
+	book_1 = "A Wrinkle in Time"
+
+	book_2 = "A Brief History of Time"
+
+	book_1 <=> book_2
+
+	1
+
+#### 利用<=>实际倒序排序 ####
+
+	books = ["Charlie and the Chocolate Factory", "War and Peace", "Utopia", "A Brief History of Time", "A Wrinkle in Time"]
+
+	# To sort our books in ascending order, in-place
+	books.sort! { |firstBook, secondBook| firstBook <=> secondBook }
+
+	# Sort your books in descending order, in-place below
+	books.sort! { |firstBook, secondBook| secondBook <=> firstBook }
+
+	["War and Peace", "Utopia", "Charlie and the Chocolate Factory", "A Wrinkle in Time", "A Brief History of Time"]
+
+#### Symbol ####
+在 Ruby 中 Symbol 表示“名字”，比如字符串的名字，标识符的名字。
+
+创建一个 Symbol 对象的方法是在名字或者字符串前面加上冒号：
+
+你可能会问，字符串就是字符串，干吗还有字符串的名字？这是因为在 Ruby 中字符串也是一种对象，即 String 对象。无论其结构还是操作和 Symbol 对象都是不同的。
+
+在 Ruby 中每一个对象都有唯一的对象标识符（Object Identifier），可以通过 object_id 方法来得到一个对象的标识符。
+
+	puts "string".object_id
+	puts "string".object_id
+
+	puts :symbol.object_id
+	puts :symbol.object_id
+
+	14290780
+	14290580
+	319848
+	319848
+
+
+#### Symbol的应用 ####
+
+	strings = ["HTML", "CSS", "JavaScript", "Python", "Ruby"]
+
+	symbols = []                # 先创建一个空的数组
+	strings.each do |s|         # 在strings中进行迭代，值为s
+ 	   symbols.push(s.to_sym)   # 将s转换为symbol，并且加入到数组中，.to_sym还可以用.intern代替
+	end
+
+#### .select 在hash中进行选择  ####
+
+	movie_ratings = {
+ 		memento: 3,
+ 		primer: 3.5,
+ 		the_matrix: 5,
+  		truman_show: 4,
+  		red_dawn: 1.5,
+  		skyfall: 4,
+  		alex_cross: 2,
+ 		uhf: 1,
+ 		lion_king: 3.5
+	}
+
+	good_movies = movie_ratings.select {|key,value| value > 3}
+
+#### .each_key .each_value 迭代时，只输出hash中的key, 或者value ####
+
+	movie_ratings = {
+ 	 	memento: 3,
+ 		primer: 3.5,
+  		the_matrix: 3,
+  		truman_show: 4,
+ 	 	red_dawn: 1.5,
+ 	 	skyfall: 4,
+ 	 	alex_cross: 2,
+  		uhf: 1,
+  		lion_king: 3.5
+	}
+
+	movie_ratings.each_key do |k|
+  	  puts k
+	end
+
+
+#### 综合练习：与用户交互，根据提供的四种指令add,update,display,delete对Hash中的内容进行更新 ####
+
+	#创建了一个初始的hash
+	movies = {
+	  Memento: 3,
+	  Primer: 4,
+	  Ishtar: 1
+	}
+
+	#询问用户
+	puts "What would you like to do?"
+	puts "-- Type 'add' to add a movie."
+	puts "-- Type 'update' to update a movie."
+	puts "-- Type 'display' to display all movies."
+	puts "-- Type 'delete' to delete a movie."
+
+	#将用户的选择赋给choice，并且全部变换为小写
+	choice = gets.chomp.downcase
+
+	#Case语句，当choise为什么时，如何做
+
+	case choice
+
+	#当为add时
+	when 'add'
+	  puts "What movie do you want to add?"
+	  title = gets.chomp
+	  if movies[title.to_sym].nil?               #当在movies这个hash中找不到title时，nil为空
+	    puts "What's the rating? (Type a number 0 to 4.)"
+	    rating = gets.chomp
+	    movies[title.to_sym] = rating.to_i       #将用户输入的rating插入到hash中
+	    puts "#{title} has been added with a rating of #{rating}."
+	  else
+	    puts "That movie already exists! Its rating is #{movies[title.to_sym]}."
+	  end
+
+	#当为update时
+	when 'update'
+	  puts "What movie do you want to update?"
+	  title = gets.chomp
+	  if movies[title.to_sym].nil?               #当在movies这个hash中找不到title时，nil为空
+	    puts "Movie not found!"
+	  else
+	    puts "What's the new rating? (Type a number 0 to 4.)"
+	    rating = gets.chomp
+	    movies[title.to_sym] = rating.to_i        #将用户输入的rating更新到hash中
+	    puts "#{title} has been updated with new rating of #{rating}."
+	  end
+
+	#当为display时
+	when 'display'
+	  movies.each do |movie, rating|              #在hash中迭代
+	    puts "#{movie}: #{rating}"
+	  end
+
+	#当为delete时
+	when 'delete'
+	  puts "What movie do you want to delete?"
+	  title = gets.chomp
+	  if movies[title.to_sym].nil?
+	    puts "Movie not found!"
+	  else
+	    movies.delete(title.to_sym)                # .delete表示在hash中删除
+	    puts "#{title} has been removed."
+	  end
+
+	#当为其它时
+	else
+	  puts "Sorry, I didn't understand you."
+
+	end
